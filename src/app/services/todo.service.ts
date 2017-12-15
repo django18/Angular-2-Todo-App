@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Todo} from '../shared/todo';
+<<<<<<< HEAD
 import { ApiService } from './api-service';
+=======
+>>>>>>> 224f55fce9ece4d766605cfbd46215603c4bb009
 
 @Injectable()
 export class TodoDataService {
@@ -13,6 +16,7 @@ export class TodoDataService {
     // Placeholder for todo's
     todos: Todo[] = [];
   
+<<<<<<< HEAD
     constructor( private api: ApiService) {
     }
   
@@ -93,5 +97,55 @@ export class TodoDataService {
     return this.api.updateTodo(todo);
   }
 
+=======
+    constructor() {
+    }
+  
+    // Simulate POST /todos
+    addTodo(todo: Todo): TodoDataService {
+      if (!todo.id) {
+        todo.id = ++this.lastId;
+      }
+      this.todos.push(todo);
+      return this;
+    }
+  
+    // Simulate DELETE /todos/:id
+    deleteTodoById(id: number): TodoDataService {
+      this.todos = this.todos
+        .filter(todo => todo.id !== id);
+      return this;
+    }
+  
+    // Simulate PUT /todos/:id
+    updateTodoById(id: number, values: Object = {}): Todo {
+      let todo = this.getTodoById(id);
+      if (!todo) {
+        return null;
+      }
+      Object.assign(todo, values);
+      return todo;
+    }
+  
+    // Simulate GET /todos
+    getAllTodos(): Todo[] {
+      return this.todos;
+    }
+  
+    // Simulate GET /todos/:id
+    getTodoById(id: number): Todo {
+      return this.todos
+        .filter(todo => todo.id === id)
+        .pop();
+    }
+  
+    // Toggle todo complete
+    toggleTodoComplete(todo: Todo){
+      let updatedTodo = this.updateTodoById(todo.id, {
+        complete: !todo.complete
+      });
+      return updatedTodo;
+    }
+>>>>>>> 224f55fce9ece4d766605cfbd46215603c4bb009
 
 }
