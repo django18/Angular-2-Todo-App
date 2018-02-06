@@ -3,6 +3,7 @@ import {Todo} from '../shared/todo';
 import { ApiService } from './api-service';
 import { Observable } from 'rxjs/Observable';
 
+
 @Injectable()
 export class TodoDataService {
 
@@ -93,6 +94,7 @@ export class TodoDataService {
     todo.complete = !todo.complete;
     return this.api.updateTodo(todo);
   }
+
 
 
 }
